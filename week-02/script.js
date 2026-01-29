@@ -22,3 +22,5 @@ console.log ("next week will be week " + nextWeek + ".");
 
 var myName = prompt("What is your name?");
 alert("My name is " + myName);
+
+//test
