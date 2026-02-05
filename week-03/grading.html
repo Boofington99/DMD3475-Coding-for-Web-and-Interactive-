@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grading assignemtn</title>
+</head>
+<body>
+    
+    <h1> Grading Assignment - Week 3</h1>
+    <p>
+        Ask the user for their grade and tell them what letter grade they got
+    </p>
+
+
+
+
+</body>
+<script>
+        // new project 
+        //ask the user for their grade and tell them what letter grade they got
+
+    var grade = prompt("what is your grade?");
+    var letterGrade = "A"
+
+     if (grade >= 80 && grade < 90) {
+        var letterGrade = "B";
+    }
+
+     if (grade >= 70 && grade < 80) {
+        var letterGrade = "C";
+    }
+
+     if (grade >= 60 && grade < 70) {
+        var letterGrade = "D";
+    }
+     if (grade < 60) {
+        var letterGrade = "F";
+    }
+
+    console.log("Your letter grade is " + letterGrade);
+
+
+
+</script>
+</html>
