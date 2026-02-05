@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Week 3 — Coding for the Web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+        max-width: 70em; 
+        /* everything in the body rectangle   */
+        margin: 100px auto;
+    }
+  </style>
+</head>
+<body>
+    <h1> this is week 3 </h1>
+
+    <p>
+    Open your browser’s Developer Tools and view the Console.
+  </p>
+
+  <p>
+    If everything is set up correctly, you should see a message in the Console.
+  </p>
+
+    <script>
+    console.log("welcome to week 3");
+    var username = "Matthew";
+
+    console.log("my name is " + username);
+
+    // var age = 20;
+
+    var age = prompt("what is your age?");
+    console.log(parseInt(age));   //if parseInt fails leads to NaN *not a number
+    
+    if(typeof parseInt(age) != Number) {
+      alert("please enter a number!");
+    }
+
+    console.log("my age is "+ age);
+    // console.log(typeof age);
+
+    if(typeof parseInt(years) != Number) {
+      alert("please enter a number!");
+    }
+
+    var years = prompt("Enter number of years...");
+
+// in [years] years, you will be [newage]
+
+// first, add years to age
+// but first we need to convert the data into a number 
+    var newage =parseInt(age) + parseInt(years);
+
+    console.log("In " +years+ " years you will be "+ newage);
+    //console.log(typeof newage);
+
+      var drinkingAge = 21;
+      console.log(typeof drinkingAge);
+
+      var canDrink = newage >= drinkingAge;
+      console.log(canDrink);
+      console.log(typeof canDrink);
+      // creates a data type for truth or false values 
+
+      //in [years] years, you [can or cannot] legally drinnk.
+
+      if (canDrink) {
+        console.log("if you want to you can.");
+      } else {
+        console.log("no, you can't.");
+      }
+
+
+    </script>
+</body>
+</html>
