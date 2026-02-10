@@ -12,7 +12,31 @@
 
     <script>
         //promt user for a number grade, then tell them their letter grade
-        
+
+        var numberGrade = prompt("What is your grade?");
+            numberGrade = parseInt(numberGrade); //converted this input into a number
+
+        //isNaN?
+        console.log(isNaN(numberGrade));
+
+        if(isNaN(numberGrade)) {
+            var numberGrade = prompt("that wasn't a number. Enter you number grade again")
+        } else {
+            var letterGrade ="A"
+            if(numberGrade >= 90){
+                letterGrade = "A";
+            } else if (numberGrade >= 80 && numberGrade <90){ 
+                letterGrade = "B"
+            }
+
+
+            alert("your letter grade is " + letterGrade);
+        }
+
+        //var sum = parseInt(numberGrade + 1); 
+        //console.log("The type of input is " + typeof numberGrade);
+        //console.log("Number Grade plus one is " + sum);
+
     </script>
 </body>
 </html>
