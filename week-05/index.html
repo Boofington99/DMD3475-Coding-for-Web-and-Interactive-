@@ -2,9 +2,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>week 05 - functions and the DOM</title>
+    <style>
+        h1, h2{
+            color: red;
+        }
+        #div1{
+            color: blueviolet;
+        }
+        #div2{
+            color: green;
+        }
+        .display-none{
+            display: none!important;
+        }
+        #div2 p{
+            font-size: 30px;
+        }
+        .red-text{
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body>
-    
-</body>
+    <body>
+        <h1>Welcome to week 05</h1>
+        <h2>This is my h2</h2>
+
+        <div id="div1">
+            <p>
+                this is my first div 
+            </p>
+        </div>
+        <div id="div2">
+            <h3>This is my div2</h3>
+            <p>
+                this is my second div
+            </p>
+        </div>
+
+
+        <script>
+           // var numberGrade = prompt("What is your grade?");
+        //    numberGrade = parseInt(numberGrade);
+
+        //     var letterGrade = "A";
+
+        //     var nextNumberGrade;
+        //     var delta = 0;
+
+        //     if(numberGrade < 90 && numberGrade >= 80){
+        //         letterGrade = "B";
+        //         nextNumberGrade = 90;
+        //         // delta = nextNumberGrade - numberGrade;
+        //     }else if(numberGrade < 80 && numberGrade >= 70){
+        //         letterGrade = "C";
+        //         nextNumberGrade = 80;
+        //         // delta = nextNumberGrade - numberGrade;
+        //     }
+
+            //difference = nextNumberGrade - numberGrade;
+
+            //alert(letterGrade);
+
+            // alert("Your number grade is: " + numberGrade)
+           // alert("you are "+ difference + " points away from the next letter grade");
+
+           //logically group set of instructions that we can run with different varibles and data
+            function addTen(number){
+                console.log(number + 10);
+            }
+
+
+            function calculateLetterGrade(numberGrade, anotherNumber){
+
+                // this is wehre the logic to calculate the letter grade will go
+
+                alert(numberGrade);
+                alert(anotherNumber);
+
+            }
+
+            // calculateLetterGrade(90, 400);
+            // calculateLetterGrade(40, 10);
+            // calculateLetterGrade(45, 100);
+
+            addTen(50);
+            addTen(45);
+            addTen(100);
+            addTen("20");
+
+            var header = document.querySelector("h1");
+                console.log(typeof header);
+                header.innerHTML = "Hello! this is my new content!";
+
+                // header.classList.add("display-none");
+            var myHeader = document.querySelector("#div2 h3");
+                myHeader.classList.add("red-text");
+                myHeader.style.fontSize = "35px";
+
+            var myParagraph = document.querySelector("#div2 p");
+                myParagraph.innerHTML = "This is my new paragraph content!";
+                myParagraph.style.fontSize = "25px";
+
+        </script>
+    </body>
 </html>
