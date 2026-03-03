@@ -4,18 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dom-Stuff</title>
+    <style>
+        .redBG {
+            background-color: red;
+            color: white!important;
+        }
+        
+        .happy{
+            background-color: #fafc97;
+            
+        }
+        .happy h1{
+            text-transform: lowercase;
+            color: palevioletred;
+        }
+        .happy h2{
+            color:pink;
+        }
+        .happy button{
+            background-color: palevioletred;
+            border-radius: 10px;
+            color: blue;
+            text-transform: lowercase;
+        }
+        .sad{
+            background-color: #97a9fa;
+            text-transform: lowercase!important;
+        }
+        .sad h1{
+            text-transform: uppercase;
+            color: blue;
+            font-size: 14px;
+        }
+        .sad h2{
+            font-size: 8px;
+            color: navy;
+        }
+        .sad button{
+            background-color: transparent;
+            border-radius: 10px;
+            border: darkblue;
+            color: white;
+            text-transform: uppercase;
+        }
+        .angry{
+            background-color: #fa9797;
+        }
+        .angry h1{
+            text-transform: uppercase;
+            color: red;
+        }
+        .angry h2{
+            color: darkred;
+        }
+        .angry button{
+            background-color: darkred;
+            border-radius: 10px;
+            color: white;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
-<body>
-    <h1>Dom Stuff</h1>
-    <p>
-        DOM = Document Object Model
-    </p>
+    <body>
+        <h1 id="pageH1">Dom Stuff</h1>
+        <p>
+            DOM = Document Object Model
+        </p>
+        <h2>make page red</h2>
+        <button id="makeRed">Press me Vro</button>
+        <br><br><br>
+
+        <h2>Change the H1</h2>
+        <input type="text" id="newH1" placeholder="Enter a New H1...">
+        <button id="changeH1">Change The H1</button>
+        <br><br><br>
+
+        <h2>How are you today?</h2>
+        <label for="userMood">
+            Enter your mood.
+        </label>
+        
+        <input type="text" id="userMood" placeholder="Happy, Sad, Angry">
+
+        <button id="processMood">Process Mood</button>
 
 
 
-</body>
 
-<script>
+        <script>
+            var button = document.querySelector("#makeRed");
+            console.log(typeof button);
 
-</script>
+            button.addEventListener("click", function(){
+                var body = document.querySelector("body");
+                body.classList.toggle("redBG");
+                button.innerHTML = "Press me Vro";
+            });
+
+            // Button that will change the H1 to whatever the user inputs in the text box
+            var newH1Input = document.querySelector("#newH1");
+            var newH1Button = document.querySelector("#changeH1");
+            var pageH1 = document.querySelector("#pageH1");
+
+            newH1Button.addEventListener("click", function(){
+                var inputValue = newH1Input.value;
+
+                pageH1.innerHTML = inputValue;
+            });
+            // Button that will change the page based on the user's mood
+            var processMoodButton = document.querySelector("#processMood");
+            var moodInput = document.querySelector("#userMood");
+            var body = document.querySelector("body");
+
+            processMoodButton.addEventListener("click", function(){
+                var inputValue = userMood.value;
+
+                if (inputValue == 'happy' ){
+                    body.classList.add("happy");
+                    body.classList.remove("angry");
+                    body.classList.remove("sad");
+                } else if (inputValue == 'sad'){
+                    body.classList.add("sad");
+                    body.classList.remove("angry");
+                    body.classList.remove("happy");
+                } else if (inputValue == 'angry'){
+                    body.classList.add("angry");
+                    body.classList.remove("happy");
+                    body.classList.remove("sad");
+                } else {
+                    alert("Please enter a valid mood: Happy, Sad, Angry");
+                }
+                
+            })
+
+
+        </script>   
+    </body>
 </html>
