@@ -5,12 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task List</title>
 </head>
+<style>
+    li{
+        font-size: 20px;
+    }
+    input{
+        font-size: 20px;
+    }
+    button{
+        font-size: 20px;
+        background-color: lightblue;
+        border-radius: 10px;
+    }
+</style>
 <body>
-    <h1>we're building a task list</h1>
+    <h1>We're Building a Task List</h1>
 
+    <input type="text" id="newTask" placeholder="Enter a task">
+    <button id="addTask">Add Task</button>
 
+    <h2>Task List</h2>
+    <ul id="taskList">
+        <li>Sample Task 1</li>
+        <li>Sample Task 2</li>
+    </ul>
 
     <script>
+        //when this button is clicked...
+        var taskButton = document.querySelector("#addTask");
+
+        //take the info from this input field. . .
+        var taskInput = document.querySelector("#newTask");
+
+        // and put it in an Li in here. . .
+        var taskList = document.querySelector("#taskList");
+
+        taskButton.addEventListener("click", function() {
+            addTask(taskInput.value);
+        });
+
+        function addTask(newTask){
+            console.log("We're adding a task!");
+            console.log
+
+            var html = "<li>" + newTask + "</li>";
+            taskList.innerHTML += html;
+        }
 
     </script>
 </body>
