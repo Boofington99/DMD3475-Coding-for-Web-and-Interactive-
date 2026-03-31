@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Task list</title>
+    <style>
+        li{
+            font-size: 20px;
+        }
+        button{
+            font-size: 20px;
+            background-color: lightblue;
+            border-radius: 10px;
+        }
+        input{
+            font-size: 20px;
+        }
+        h1{
+            font-family: "Arial", sans-serif;
+            color: darkblue;
+            font-size: 36px;
+            
+        }
+    </style>
+<body>
+    <h1>Fancy Task List</h1>
+
+    <input type="text" id="newTask" placeholder="Enter a task">
+    <button id="addTask">Add Task</button>
+
+    <ul id="taskList">
+        
+    </ul>
+
+
+    <script>
+        var taskList = [];
+        var taskButton = document.querySelector("#addTask");
+        var taskInput = document.querySelector("#newTask");
+
+            // taskList.push("Brush Teeth");
+            // taskList.push("Go to Class.");
+        function addTask(task) {
+            taskList.push(task);
+
+        }
+        function renderList() {
+            var listElement = document.querySelector("#taskList");
+            
+            listElement.innerHTML = "";
+            //read the task list arry and render it to the page
+            //loop  though each item one by one in our tasklist 
+            for(var i=0; i < taskList.length; i++){
+                var listItem = "<li>" + taskList[i] + "</li>";
+
+                listElement.innerHTML += listItem;
+            }
+        }   
+
+          taskButton.addEventListener("click", function() {
+            var taskText = taskInput.value.trim(); 
+
+            if (taskText !== "") {
+                addTask(taskText);
+                renderList();
+                taskInput.value = ""; 
+            }
+        });
+
+
+        addTask("Go to Lunch");
+        addTask("Forget about Functions.");
+
+            console.log(taskList);
+    </script>
+</body>
+</html>
