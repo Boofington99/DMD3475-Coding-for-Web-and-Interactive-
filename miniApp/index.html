@@ -3,76 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Task list</title>
+    <title>Fancy Task List</title>
     <style>
-        li{
+        li {
             font-size: 20px;
         }
-        button{
+        button {
             font-size: 20px;
             background-color: lightblue;
             border-radius: 10px;
+            margin: 5px;
         }
-        input{
+        input {
             font-size: 20px;
         }
-        h1{
+        h1 {
             font-family: "Arial", sans-serif;
             color: darkblue;
             font-size: 36px;
-            
         }
     </style>
+</head>
 <body>
     <h1>Fancy Task List</h1>
 
     <input type="text" id="newTask" placeholder="Enter a task">
     <button id="addTask">Add Task</button>
+    <button id="deleteAll">Delete All</button>
+    <button id="sortTasks">Sort A-Z</button>
 
-    <ul id="taskList">
-        
-    </ul>
-
+    <ul id="taskList"></ul>
 
     <script>
         var taskList = [];
-        var taskButton = document.querySelector("#addTask");
         var taskInput = document.querySelector("#newTask");
+        var taskButton = document.querySelector("#addTask");
+        var deleteAllButton = document.querySelector("#deleteAll");
+        var sortButton = document.querySelector("#sortTasks");
 
-            // taskList.push("Brush Teeth");
-            // taskList.push("Go to Class.");
+        // Add a new task to the array
         function addTask(task) {
-            taskList.push(task);
-
+            taskList.push(task); // using push to add
         }
+
+        // Render the task list to the page
         function renderList() {
             var listElement = document.querySelector("#taskList");
-            
             listElement.innerHTML = "";
-            //read the task list arry and render it to the page
-            //loop  though each item one by one in our tasklist 
-            for(var i=0; i < taskList.length; i++){
-                var listItem = "<li>" + taskList[i] + "</li>";
 
+            for (var i = 0; i < taskList.length; i++) {
+                var listItem = "<li>" + (i+1) + ". " + taskList[i] + "</li>"; // number each item
                 listElement.innerHTML += listItem;
             }
-        }   
+        }
 
-          taskButton.addEventListener("click", function() {
-            var taskText = taskInput.value.trim(); 
-
+        // Add task when button clicked
+        taskButton.addEventListener("click", function() {
+            var taskText = taskInput.value.trim();
             if (taskText !== "") {
                 addTask(taskText);
                 renderList();
-                taskInput.value = ""; 
+                taskInput.value = ""; // clear input
+                taskInput.focus(); // refocus input
             }
         });
 
+        // Delete all tasks
+        deleteAllButton.addEventListener("click", function() {
+            taskList.splice(0, taskList.length); // remove all items
+            renderList();
+        });
 
-        addTask("Go to Lunch");
-        addTask("Forget about Functions.");
+        // Sort tasks alphabetically
+        sortButton.addEventListener("click", function() {
+            taskList.sort(); // sort A-Z
+            renderList();
+        });
 
-            console.log(taskList);
+        // Add initial tasks
+        // addTask("Go to Lunch");
+        // addTask("Forget about Functions.");
+        // addTask("Brush Teeth");
+        renderList();
     </script>
 </body>
 </html>
