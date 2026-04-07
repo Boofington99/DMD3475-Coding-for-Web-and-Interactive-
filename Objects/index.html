@@ -3,13 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Objects</title>
+    <title>Learning Objects</title>
 </head>
 <body>
-    <h1>working with objects</h1>
+    <h1>Working/Learning With Objects</h1>
+
+    <div id="directory">
+<!-- for every object in the directory varible, print it out here -->
+
+    </div>
 
 
+    <script>
+        var age = 25;
+        var name = "Joel";
+        var list = [];
+        var isOld = true; 
+
+        var joel = {
+            name: "Joel",
+            age: 25,
+            list: ["Teach class", 'eat lunch'],
+            isOld: true
+        };
+
+        console.log(joel);
+
+        var directory = [
+            {
+                name: "Joel",
+                role: 'Faculty'
+            },
+            {
+                name: "Sarah",
+                role: 'Student'
+            },
+            {
+                name: "Alyssa",
+                role: 'Student'
+            }
+        ]
+
+        const directoryDiv = document.getElementById('directory');
+
+        function renderDirectory() {
+            directoryDiv.innerHTML = '';
+            
+        directory.forEach(person => {
+            const p = document.createElement('p');
+            p.textContent = `Name: ${person.name}, Role: ${person.role}`;
+            directoryDiv.appendChild(p);
+        });
+    }
 
 
+    
+        renderDirectory();
+
+    </script>
 </body>
 </html>
