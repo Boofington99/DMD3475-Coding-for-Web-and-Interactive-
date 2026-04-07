@@ -8,56 +8,83 @@
 <body>
     <h1>Working/Learning With Objects</h1>
 
-    <div id="directory">
-<!-- for every object in the directory varible, print it out here -->
-
+    <div id="controls">
+        <input type="text" id="nameInput" placeholder="Enter Name">
+        <input type="text" id="roleInput" placeholder="Enter Role">
+        <button id="addBtn">Add Person</button>
     </div>
 
+    <div id="directory">
+        </div>
 
     <script>
-        var age = 25;
-        var name = "Joel";
-        var list = [];
-        var isOld = true; 
-
-        var joel = {
-            name: "Joel",
-            age: 25,
-            list: ["Teach class", 'eat lunch'],
-            isOld: true
-        };
-
-        console.log(joel);
-
         var directory = [
-            {
-                name: "Joel",
-                role: 'Faculty'
-            },
-            {
-                name: "Sarah",
-                role: 'Student'
-            },
-            {
-                name: "Alyssa",
-                role: 'Student'
-            }
-        ]
+            { name: "Joel", role: 'Faculty' },
+            { name: "Sarah", role: 'Student' },
+            { name: "Alyssa", role: 'Student' }
+        ];
 
         const directoryDiv = document.getElementById('directory');
 
         function renderDirectory() {
             directoryDiv.innerHTML = '';
+            directory.forEach(person => {
+                const p = document.createElement('p');
+                p.textContent = `Name: ${person.name}, Role: ${person.role}`;
+                directoryDiv.appendChild(p);
+            });
+        }
+
+        // 2. Initial call to show the data already in the array
+        renderDirectory();
+
+        function addPerson(name, role) {
+            directory.push({ name, role });
+            renderDirectory();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameInput = document.querySelector('#nameInput');
+            const roleInput = document.querySelector('#roleInput');
+            const addBtn = document.querySelector('#addBtn');
             
-        directory.forEach(person => {
-            const p = document.createElement('p');
-            p.textContent = `Name: ${person.name}, Role: ${person.role}`;
-            directoryDiv.appendChild(p);
+            addBtn.addEventListener('click', () => {
+                if (nameInput.value && roleInput.value) {
+                    addPerson(nameInput.value, roleInput.value);
+                    nameInput.value = '';
+                    roleInput.value = '';
+                } else {
+                    alert("Please fill out both fields!");
+                }
+            });
         });
+// and 2) create the ability to edit the name and role of anyone already in the directory.
+    function editPerson(index) {
+        const newName = prompt("Enter new name:", directory[index].name);
+        if (newName === null) return;
+        
+        const newRole = prompt("Enter new role:", directory[index].role);
+        if (newRole === null) return;
+        
+        directory[index].name = newName;
+        directory[index].role = newRole;
+        renderDirectory();
     }
 
-
-    
+    function renderDirectory() {
+        directoryDiv.innerHTML = '';
+        directory.forEach((person, index) => {
+        const p = document.createElement('p');
+        p.textContent = `Name: ${person.name}, Role: ${person.role}`;
+        
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.addEventListener('click', () => editPerson(index));
+        
+        p.appendChild(editBtn);
+        directoryDiv.appendChild(p);
+        });
+    }
         renderDirectory();
 
     </script>
