@@ -39,7 +39,7 @@
         }
 
         function getCatFacts(){
-            fetch('https://meowfacts.herokuapp.com/?count=5')
+            fetch('https://meowfacts.herokuapp.com/?count=1')
                 .then(response => response.json())
                 .then(function(data){
                     catFacts = data.data;
@@ -63,8 +63,11 @@
                 var dogBreeds = data.data; // this is an array of dog breed objects
 
                 console.log(dogBreeds[0]); // log the first breed object
+                console.log(dogBreeds[0].attributes.name); // log the first breed object
+                console.log(dogBreeds[0].attributes.description); // log the description of the first breed
+                console.log(dogBreeds[0].attributes.female_weight.max); // log the max weight of the first breed
             });
-        };
+        }
 
         getDogBreeds();
 
