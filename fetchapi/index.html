@@ -21,7 +21,54 @@
             'role': 'Faculty'
         };
 
-        console.log(simpleObject.name);
-    </script>
+        console.log(simpleObject);
+
+        // var catFacts = {
+        //     "joel isnt a fan of cats"
+        //     "Joel is allergic to cats"
+        // }
+
+        function renderList(){
+            const ul = document.createElement('catfacts');
+            catFacts.forEach(fact => {
+                const li = document.createElement('li');
+                li.textContent = fact;
+                ul.appendChild(li);
+            });
+            document.body.appendChild(ul);
+        }
+
+        function getCatFacts(){
+            fetch('https://meowfacts.herokuapp.com/?count=5')
+                .then(response => response.json())
+                .then(function(data){
+                    catFacts = data.data;
+                    renderList();
+                }
+            );
+            }
+
+        // console.log(catFacts);
+
+        getCatFacts(1);
+
+        
+            // dog breeds below 
+        function getDogBreeds(){
+            // Get first 10 breeds
+            fetch('https://dogapi.dog/api/v2/breeds?page[size]=10')
+            .then(response => response.json())
+            .then(function(data){
+                console.log(data.data);       
+                var dogBreeds = data.data; // this is an array of dog breed objects
+
+                console.log(dogBreeds[0]); // log the first breed object
+            });
+        };
+
+        getDogBreeds();
+
+
+        </script>
 </body>
 </html>
