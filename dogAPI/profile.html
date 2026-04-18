@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Breed Profile</title>
+<!-- dog hw -->
+ <!-- test -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      background: #4CAF50;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    a {
+      display: inline-block;
+      margin-bottom: 15px;
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🐶 Breed Profile</h1>
+
+  <div class="container">
+    <a href="index.html">← Back to list</a>
+
+    <div id="breedDetails"></div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const breedId = params.get("id");
+
+    fetch("https://dogapi.dog/api/v2/breeds")
+      .then(res => res.json())
+      .then(data => {
+        const breeds = data.data;
+
+        const breed = breeds.find(b => b.id === breedId);
+
+        const container = document.getElementById("breedDetails");
+
+        if (breed) {
+          container.innerHTML = `
+            <h2>${breed.attributes.name}</h2>
+            <p>${breed.attributes.description}</p>
+            <p><strong>Life Span:</strong> ${breed.attributes.life_span}</p>
+            <p><strong>Temperament:</strong> ${breed.attributes.temperament}</p>
+          `;
+        } else {
+          container.innerHTML = "<p>Breed not found.</p>";
+        }
+      })
+      .catch(err => console.log(err));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dog Breeds</title>
+<!-- testing -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      background: #4CAF50;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #breedList {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 per row */
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .breed {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 8px;
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🐶 Dog Breed Browser</h1>
+
+  <div id="breedList"></div>
+
+  <script>
+    fetch("https://dogapi.dog/api/v2/breeds")
+      .then(res => res.json())
+      .then(data => {
+        const breeds = data.data;
+        const list = document.getElementById("breedList");
+
+        breeds.forEach(breed => {
+          const div = document.createElement("div");
+          div.classList.add("breed");
+
+          div.innerHTML = `
+            <div>${breed.attributes.name}</div>
+            <a href="profile.html?id=${breed.id}">View Profile</a>
+          `;
+
+          list.appendChild(div);
+        });
+      })
+      .catch(err => console.log(err));
+  </script>
+
+</body>
+</html>
