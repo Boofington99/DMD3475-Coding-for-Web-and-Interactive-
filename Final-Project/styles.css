@@ -1,0 +1,101 @@
+/* RESET */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: white;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  border-bottom: 2px solid #00ff99;
+}
+
+header h1 {
+  margin: 0;
+  color: #00ff99;
+}
+
+/* MAIN LAYOUT */
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 15px;
+}
+
+/* PANELS */
+.panel {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 10px;
+  flex: 1;
+  min-height: 500px;
+  border: 1px solid #333;
+}
+
+/* Center panel larger */
+.center {
+  flex: 2;
+  text-align: center;
+}
+
+/* INPUTS */
+input {
+  width: 70%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* BUTTONS */
+button {
+  padding: 8px 10px;
+  background: #00ff99;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #00cc77;
+}
+
+/* LISTS */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #222;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+/* GAME AREA */
+#gameArea {
+  height: 300px;
+  background: black;
+  border: 2px solid #00ff99;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #111;
+  margin-top: 20px;
+  border-top: 1px solid #333;
+}

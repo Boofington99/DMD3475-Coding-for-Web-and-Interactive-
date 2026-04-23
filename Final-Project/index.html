@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final-Project-ClassicGame</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Final-Project-ClassicGame</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+  <header>
+    <h1>🎮 Arcade Hub</h1>
+    <p>Snake Game + Player Leaderboard System</p>
+  </header>
 
+  <main class="container">
 
-    
+    <!-- LEFT PANEL: PLAYERS -->
+    <section class="panel left">
+      <h2>Players</h2>
+
+      <div class="add-player">
+        <input type="text" id="playerName" placeholder="Enter player name">
+        <button id="addPlayerBtn">Add Player</button>
+      </div>
+
+      <ul id="playerList"></ul>
+    </section>
+
+    <!-- CENTER: GAME -->
+    <section class="panel center">
+      <h2>Snake Game</h2>
+
+      <div id="gameArea">
+        <p>Game will go here</p>
+      </div>
+
+      <button id="startGameBtn">Start Game</button>
+
+      <div id="scoreDisplay">Score: 0</div>
+    </section>
+
+    <!-- RIGHT PANEL: LEADERBOARD -->
+    <section class="panel right">
+      <h2>Leaderboard</h2>
+
+      <div class="controls">
+        <button id="sortHigh">Sort High → Low</button>
+        <button id="sortLow">Sort Low → High</button>
+      </div>
+
+      <ul id="leaderboard"></ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Arcade Hub Project</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
