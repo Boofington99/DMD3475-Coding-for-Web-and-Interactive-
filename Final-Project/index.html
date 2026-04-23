@@ -12,13 +12,32 @@
 
   <header>
     <h1>🎮 Arcade Hub</h1>
-    <p>Snake Game + Player Leaderboard System</p>
+    <p>Snake Game + Player System</p>
   </header>
 
   <main class="container">
 
-    <!-- LEFT PANEL: PLAYERS -->
-    <section class="panel left">
+    <!-- GAME HEADER -->
+    <section class="panel">
+      <h2>Snake Game</h2>
+
+      <div class="game-header">
+        <div id="scoreDisplay">Score: 0</div>
+        <button id="startGameBtn">Start Game</button>
+      </div>
+    </section>
+
+    <!-- GAME AREA -->
+    <section class="panel">
+      <h2>Game Area</h2>
+
+      <div id="gameArea">
+        <p>Game will render here</p>
+      </div>
+    </section>
+
+    <!-- PLAYERS -->
+    <section class="panel">
       <h2>Players</h2>
 
       <div class="add-player">
@@ -29,21 +48,8 @@
       <ul id="playerList"></ul>
     </section>
 
-    <!-- CENTER: GAME -->
-    <section class="panel center">
-      <h2>Snake Game</h2>
-
-      <div id="gameArea">
-        <p>Game will go here</p>
-      </div>
-
-      <button id="startGameBtn">Start Game</button>
-
-      <div id="scoreDisplay">Score: 0</div>
-    </section>
-
-    <!-- RIGHT PANEL: LEADERBOARD -->
-    <section class="panel right">
+    <!-- LEADERBOARD -->
+    <section class="panel">
       <h2>Leaderboard</h2>
 
       <div class="controls">
@@ -55,10 +61,6 @@
     </section>
 
   </main>
-
-  <footer>
-    <p>Arcade Hub Project</p>
-  </footer>
 
   <script src="app.js"></script>
 </body>
