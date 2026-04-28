@@ -18,7 +18,7 @@
   <!-- GRID WRAPPER -->
   <main class="parent">
 
-    <!-- 1. TOP HEADER / GAME TITLE -->
+    <!-- 1. GAME HEADER -->
     <div class="div1">
       <h2>Snake Game</h2>
 
@@ -28,26 +28,28 @@
       </div>
     </div>
 
-    <!-- 2. GAME AREA -->
+    <!-- 2. GAME AREA (CANVAS FIXED) -->
     <div class="div2">
       <h2>Game Area</h2>
 
-      <div id="gameArea">
-        <p>Game will render here</p>
-      </div>
+      <canvas id="gameCanvas"></canvas>
     </div>
 
-    <!-- 3. PLAYERS -->
+    <!-- 3. PLAYERS + CONTROLS -->
     <div class="div4">
       <h2>Players</h2>
 
       <input type="text" id="playerName" placeholder="Enter player name">
       <button id="addPlayerBtn">Add Player</button>
 
+      <!-- REQUIRED: SEARCH / FILTER -->
+      <input type="text" id="searchBox" placeholder="Search players">
+
+      <!-- SINGLE SOURCE OF TRUTH LIST -->
       <ul id="playerList"></ul>
     </div>
 
-    <!-- 4. LEADERBOARD -->
+    <!-- 4. LEADERBOARD (SORT VIEW ONLY) -->
     <div class="div5">
       <h2>Leaderboard</h2>
 
@@ -56,6 +58,7 @@
         <button id="sortLow">Sort Low → High</button>
       </div>
 
+      <!-- same data, just another view (optional display use) -->
       <ul id="leaderboard"></ul>
     </div>
 
