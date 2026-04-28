@@ -15,41 +15,40 @@
     <p>Snake Game + Player System</p>
   </header>
 
-  <main class="container">
+  <!-- GRID WRAPPER -->
+  <main class="parent">
 
-    <!-- GAME HEADER -->
-    <section class="panel">
+    <!-- 1. TOP HEADER / GAME TITLE -->
+    <div class="div1">
       <h2>Snake Game</h2>
 
       <div class="game-header">
         <div id="scoreDisplay">Score: 0</div>
         <button id="startGameBtn">Start Game</button>
       </div>
-    </section>
+    </div>
 
-    <!-- GAME AREA -->
-    <section class="panel">
+    <!-- 2. GAME AREA -->
+    <div class="div2">
       <h2>Game Area</h2>
 
       <div id="gameArea">
         <p>Game will render here</p>
       </div>
-    </section>
+    </div>
 
-    <!-- PLAYERS -->
-    <section class="panel">
+    <!-- 3. PLAYERS -->
+    <div class="div4">
       <h2>Players</h2>
 
-      <div class="add-player">
-        <input type="text" id="playerName" placeholder="Enter player name">
-        <button id="addPlayerBtn">Add Player</button>
-      </div>
+      <input type="text" id="playerName" placeholder="Enter player name">
+      <button id="addPlayerBtn">Add Player</button>
 
       <ul id="playerList"></ul>
-    </section>
+    </div>
 
-    <!-- LEADERBOARD -->
-    <section class="panel">
+    <!-- 4. LEADERBOARD -->
+    <div class="div5">
       <h2>Leaderboard</h2>
 
       <div class="controls">
@@ -58,7 +57,7 @@
       </div>
 
       <ul id="leaderboard"></ul>
-    </section>
+    </div>
 
   </main>
 
