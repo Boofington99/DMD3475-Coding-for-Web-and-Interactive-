@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     GAME SETUP and code organization
+      GAME SETUP
   ========================= */
   const canvas = document.getElementById("gameCanvas");
   const ctx = canvas.getContext("2d");
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let snake = [];
   let direction = "RIGHT";
+  let lastProcessedDirection = "RIGHT"; // Prevents 180-degree turn bug
   let food = {};
   let gameInterval = null;
   let score = 0;
@@ -18,13 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let players = [];
 
   /* =========================
-     START GAME
+      START GAME
   ========================= */
   document.getElementById("startGameBtn").addEventListener("click", startGame);
 
   function startGame() {
     snake = [{ x: 100, y: 100 }];
     direction = "RIGHT";
+    lastProcessedDirection = "RIGHT";
     score = 0;
 
     document.getElementById("scoreDisplay").textContent = "Score: 0";
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     GAME LOOP
+      GAME LOOP
   ========================= */
   function gameLoop() {
     moveSnake();
@@ -45,10 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     MOVEMENT
+      MOVEMENT
   ========================= */
   function moveSnake() {
     const head = { ...snake[0] };
+
+    // Update the "last processed" so the keydown listener knows where we actually are
+    lastProcessedDirection = direction;
 
     if (direction === "RIGHT") head.x += 20;
     if (direction === "LEFT") head.x -= 20;
@@ -67,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     DRAW GAME
+      DRAW GAME
   ========================= */
   function draw() {
     ctx.fillStyle = "#111";
@@ -83,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     FOOD
+      FOOD
   ========================= */
   function spawnFood() {
     food = {
@@ -93,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     COLLISION
+      COLLISION
   ========================= */
   function checkCollision() {
     const head = snake[0];
@@ -113,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     GAME OVER (IMPROVED UX)
+      GAME OVER
   ========================= */
   function gameOver() {
     clearInterval(gameInterval);
@@ -131,24 +136,27 @@ document.addEventListener("DOMContentLoaded", () => {
         save();
         renderPlayers();
       }
-
     }, 100);
   }
 
   /* =========================
-     WASD CONTROLS
+      CONTROLS (FIXED WASD)
   ========================= */
   document.addEventListener("keydown", (e) => {
+    // Stop snake movement if user is typing in a text box
+    if (e.target.tagName === "INPUT") return;
+
     const key = e.key.toLowerCase();
 
-    if (key === "w" && direction !== "DOWN") direction = "UP";
-    if (key === "s" && direction !== "UP") direction = "DOWN";
-    if (key === "a" && direction !== "RIGHT") direction = "LEFT";
-    if (key === "d" && direction !== "LEFT") direction = "RIGHT";
+    // Check against lastProcessedDirection to prevent suicide-turns
+    if ((key === "w" || key === "arrowup") && lastProcessedDirection !== "DOWN") direction = "UP";
+    if ((key === "s" || key === "arrowdown") && lastProcessedDirection !== "UP") direction = "DOWN";
+    if ((key === "a" || key === "arrowleft") && lastProcessedDirection !== "RIGHT") direction = "LEFT";
+    if ((key === "d" || key === "arrowright") && lastProcessedDirection !== "LEFT") direction = "RIGHT";
   });
 
   /* =========================
-     PLAYER SYSTEM
+      PLAYER SYSTEM
   ========================= */
   function save() {
     localStorage.setItem("players", JSON.stringify(players));
@@ -156,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderPlayers(filter = "") {
     const list = document.getElementById("playerList");
+    if (!list) return;
     list.innerHTML = "";
 
     players
@@ -176,27 +185,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     ADD PLAYER (CLEANED)
+      ADD PLAYER
   ========================= */
-  document.getElementById("addPlayerBtn").addEventListener("click", () => {
-    const input = document.getElementById("playerName");
+  const addBtn = document.getElementById("addPlayerBtn");
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      const input = document.getElementById("playerName");
 
-    if (!input.value.trim()) return;
+      if (!input.value.trim()) return;
 
-    players.push({
-      id: Date.now(),
-      name: input.value.trim(),
-      score: 0
+      players.push({
+        id: Date.now(),
+        name: input.value.trim(),
+        score: 0
+      });
+
+      input.value = "";
+
+      save();
+      renderPlayers();
     });
-
-    input.value = "";
-
-    save();
-    renderPlayers();
-  });
+  }
 
   /* =========================
-     EDIT / DELETE / SCORE
+      EDIT / DELETE / SCORE
   ========================= */
   window.editPlayer = function (id) {
     const newName = prompt("Enter new name:");
@@ -212,7 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.deletePlayer = function (id) {
     players = players.filter(p => p.id !== id);
-
     save();
     renderPlayers();
   };
@@ -221,42 +232,39 @@ document.addEventListener("DOMContentLoaded", () => {
     players = players.map(p =>
       p.id === id ? { ...p, score: p.score + 1 } : p
     );
-
     save();
     renderPlayers();
   };
 
   /* =========================
-     SORTING
+      SORTING & SEARCH
   ========================= */
-  document.getElementById("sortHigh").addEventListener("click", () => {
+  const sortHigh = document.getElementById("sortHigh");
+  if (sortHigh) sortHigh.addEventListener("click", () => {
     players.sort((a, b) => b.score - a.score);
     renderPlayers();
   });
 
-  document.getElementById("sortLow").addEventListener("click", () => {
+  const sortLow = document.getElementById("sortLow");
+  if (sortLow) sortLow.addEventListener("click", () => {
     players.sort((a, b) => a.score - b.score);
     renderPlayers();
   });
 
-  /* =========================
-     SEARCH
-  ========================= */
-  document.getElementById("searchBox").addEventListener("input", (e) => {
+  const searchBox = document.getElementById("searchBox");
+  if (searchBox) searchBox.addEventListener("input", (e) => {
     renderPlayers(e.target.value.toLowerCase());
   });
 
-  /* =========================
-     ENTER KEY SUPPORT
-  ========================= */
-  document.getElementById("playerName").addEventListener("keydown", (e) => {
+  const nameInput = document.getElementById("playerName");
+  if (nameInput) nameInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       document.getElementById("addPlayerBtn").click();
     }
   });
 
   /* =========================
-     INIT
+      INIT
   ========================= */
   function init() {
     const saved = localStorage.getItem("players");
@@ -271,19 +279,58 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function loadData() {
-    const res = await fetch("https://jsonplaceholder.typicode.com/users");
-    const data = await res.json();
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/users");
+      const data = await res.json();
 
-    players = data.map(u => ({
-      id: u.id,
-      name: u.username,
-      score: Math.floor(Math.random() * 100)
-    }));
+      players = data.map(u => ({
+        id: u.id,
+        name: u.username,
+        score: Math.floor(Math.random() * 100)
+      }));
 
-    save();
-    renderPlayers();
+      save();
+      renderPlayers();
+    } catch (err) {
+      console.log("Failed to load external data", err);
+    }
   }
 
   init();
 
 });
+function gameOver() {
+  clearInterval(gameInterval);
+
+  // =========================
+  // SHOW GAME OVER TEXT
+  // =========================
+  const gameOverText = document.getElementById("gameOverText");
+  if (gameOverText) {
+    gameOverText.style.display = "block";
+  }
+
+  // Optional: highlight leaderboard (right side)
+  const leaderboardBox = document.querySelector(".div5");
+  if (leaderboardBox) {
+    leaderboardBox.classList.add("game-over");
+  }
+
+  // =========================
+  // DELAY PROMPT (keeps UX smooth)
+  // =========================
+  setTimeout(() => {
+    const playerName = prompt(`Game Over! Your score: ${score}\nEnter your name:`);
+
+    if (playerName && playerName.trim() !== "") {
+      players.push({
+        id: Date.now(),
+        name: playerName.trim(),
+        score: score
+      });
+
+      save();
+      renderPlayers();
+    }
+  }, 100);
+}
