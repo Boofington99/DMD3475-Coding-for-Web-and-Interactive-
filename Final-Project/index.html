@@ -26,11 +26,28 @@
       font-family: Arial, sans-serif;
     }
 
-    /* HEADER */
+    /* HEADER / GAME HUD */
     .div1 {
       grid-column: 1 / 6;
       grid-row: 1 / 2;
       background: #1a1a1a;
+    }
+
+    .arcade-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .arcade-header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #00ff99;
+      text-transform: uppercase;
+      letter-spacing: 3px;
     }
 
     .game-header {
@@ -38,6 +55,7 @@
       justify-content: space-between;
       align-items: center;
       margin-top: 10px;
+      width: 100%;
     }
 
     /* GAME AREA */
@@ -89,36 +107,35 @@
 
 <body>
 
-  <header>
-    <h1>🎮 Arcade Hub</h1>
-    <p>Snake Game + Player System</p>
-  </header>
-
   <!-- GRID WRAPPER -->
   <main class="parent">
 
-    <!-- 1. GAME HEADER -->
-    <div class="div1">
+    <!-- 1. GAME HEADER + ARCADE TITLE -->
+    <div class="div1 arcade-header">
+
+      <h1>🎮 Arcade Hub</h1>
+      <p>Snake Game + Player System</p>
+
       <h2>Snake Game</h2>
 
       <div class="game-header">
         <div id="scoreDisplay">Score: 0</div>
         <button id="startGameBtn">Start Game</button>
       </div>
+
     </div>
 
-   <!-- 2. GAME AREA -->
-<div class="div2">
-  <h2>Game Area</h2>
-  
+    <!-- 2. GAME AREA -->
+    <div class="div2">
+      <h2>Game Area</h2>
 
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
 
-  <!-- GAME OVER TEXT -->
-  <div id="gameOverText" style="display:none; margin-top:15px; color:red; font-size:28px; font-weight:bold;">
-    GAME OVER
-  </div>
-</div>
+      <!-- GAME OVER TEXT -->
+      <div id="gameOverText" style="display:none; margin-top:15px; color:red; font-size:28px; font-weight:bold;">
+        GAME OVER
+      </div>
+    </div>
 
     <!-- 3. PLAYERS -->
     <div class="div4">
@@ -144,12 +161,13 @@
       <ul id="leaderboard"></ul>
     </div>
 
-    <!-- 5. EXTRA SECTION -->
+    <!-- 5. INSTRUCTIONS -->
     <div class="div6">
       <h2>Instructions</h2>
       <p>Use WASD or arrow keys (if enabled) to move the snake. Eat food to grow and increase score.</p>
     </div>
 
+    <!-- 6. STATS -->
     <div class="div7">
       <h2>Stats</h2>
       <p>Track high scores and player performance here.</p>
