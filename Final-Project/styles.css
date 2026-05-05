@@ -9,6 +9,9 @@ body {
   overflow-x: hidden;
 }
 
+/* =========================================
+   ARCADE HEADER WRAPPER
+   ========================================= */
 .arcade-header {
   grid-column: 1 / 6;
   grid-row: 1 / 2;
@@ -19,22 +22,6 @@ body {
   justify-content: center;
 
   text-align: center;
-}
-
-/* buttons */
-button {
-  padding: 14px 22px;
-  font-size: 16px;
-  background: #00ff99;
-  color: #0d0d0d;
-  border: none;
-  cursor: pointer;
-  margin: 6px 0;
-  font-weight: bold;
-  border-radius: 8px;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-  letter-spacing: 1px;
 }
 
 /* =========================================
@@ -164,8 +151,67 @@ header p {
 }
 
 /* =========================================
-   UI ELEMENTS (Inputs, Buttons, Lists)
+   BUTTON SYSTEM (ARCADE UPGRADE)
    ========================================= */
+
+/* Base Buttons */
+button {
+  padding: 14px 22px;
+  font-size: 16px;
+  background: #00ff99;
+  color: #0d0d0d;
+  border: none;
+  cursor: pointer;
+  margin: 6px 0;
+  font-weight: bold;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+
+/* 🎮 Important Buttons */
+#startGameBtn,
+#addPlayerBtn {
+  padding: 18px 30px;
+  font-size: 18px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.4);
+}
+
+/* ✨ Start Button Glow */
+#startGameBtn {
+  animation: arcadeGlow 1.8s infinite alternate;
+}
+
+@keyframes arcadeGlow {
+  from {
+    box-shadow: 0 0 8px rgba(0,255,153,0.3);
+    transform: scale(1);
+  }
+  to {
+    box-shadow: 0 0 22px rgba(0,255,153,0.8);
+    transform: scale(1.03);
+  }
+}
+
+/* 👇 Press effect */
+#startGameBtn:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 5px rgba(0,255,153,0.3);
+}
+
+/* Hover effect */
+button:hover {
+  background: #00cc77;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 255, 153, 0.3);
+}
+
+/* =========================================
+   UI ELEMENTS
+   ========================================= */
+
 .game-header {
   display: flex;
   justify-content: space-between;
@@ -201,27 +247,6 @@ input:focus {
   border-color: #00ff99;
 }
 
-button {
-  padding: 14px 22px;
-  font-size: 16px;
-  background: #00ff99;
-  color: #0d0d0d;
-  border: none;
-  cursor: pointer;
-  margin: 6px 0;
-  font-weight: bold;
-  border-radius: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.2s ease;
-}
-
-button:hover {
-  background: #00cc77;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 255, 153, 0.3);
-}
-
 ul {
   list-style: none;
   padding: 0;
@@ -245,16 +270,3 @@ h2, h3, h4 {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
-/* =========================================
-   DEBUG MODE (Toggle these to see grid)
-   ========================================= */
-/*
-.parent { border: 2px solid red; }
-.div1 { border: 2px solid yellow; }
-.div2 { border: 2px solid lime; }
-.div4 { border: 2px solid cyan; }
-.div5 { border: 2px solid magenta; }
-.div6 { border: 2px solid white; }
-.div7 { border: 2px solid orange; }
-*/
